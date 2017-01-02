@@ -3,109 +3,98 @@ using UnityEditor;
 
 namespace UnityBuild
 {
-
-public class UploadItchSettings : BaseSettings
-{
-    #region Singleton
-
-    private static UploadItchSettings instance = null;
-
-    public static UploadItchSettings Instance
+    public class UploadItchSettings : BaseSettings
     {
-        get
+        #region Singleton
+
+        private static UploadItchSettings instance = null;
+
+        public static UploadItchSettings Instance
         {
-            if (instance == null)
+            get
             {
-                instance = CreateAsset<UploadItchSettings>("UploadItchSettings");
+                if (instance == null)
+                {
+                    instance = CreateAsset<UploadItchSettings>("UploadItchSettings");
+                }
+
+                return instance;
             }
-
-            return instance;
         }
-    }
+        
+        #endregion
 
-    public UploadItchSettings()
-    {
-#if UNITY_EDITOR_WIN
-        _butlerPath = @"C:\game-dev\butler.exe";
-#elif UNITY_EDITOR_OSX
-        _butlerPath = @"/Users/username/game-dev/butler";
-#endif
-    }
+        #region MenuItems
 
-    #endregion
-
-    #region MenuItems
-
-    [MenuItem("Build/Upload/itch.io/Edit Settings", priority = 0)]
-    public static void EditSettings()
-    {
-        Selection.activeObject = Instance;
-        EditorApplication.ExecuteMenuItem("Window/Inspector");
-    }
-
-    #endregion
-
-    #region Variables
-
-    [Header("Itch.io Upload Settings (Field Info in Tooltips)")]
-
-    [SerializeField]
-    [Tooltip("Path to butler executable.")]
-    private string _butlerPath = "";
-
-    [SerializeField]
-    [Tooltip("itch.io username.")]
-    private string _itchUserName = "username";
-
-    [SerializeField]
-    [Tooltip("itch.io project name.")]
-    private string _itchGameName = "project";
-
-    [SerializeField]
-    [Tooltip("Upload version number (optional).")]
-    private string _versionNumber = "";
-
-    #endregion
-    
-    #region Public Properties
-
-    public static string versionNumber
-    {
-        get
+        [MenuItem("Build/Upload/itch.io/Edit Settings", priority = 0)]
+        public static void EditSettings()
         {
-            return Instance._versionNumber;
+            Selection.activeObject = Instance;
+            EditorApplication.ExecuteMenuItem("Window/Inspector");
         }
-        set
+
+        #endregion
+
+        #region Variables
+
+        [Header("Itch.io Upload Settings (Field Info in Tooltips)")]
+
+        [SerializeField]
+        [Tooltip("Path to butler executable.")]
+        private string _butlerPath = "";
+
+        [SerializeField]
+        [Tooltip("itch.io username.")]
+        private string _itchUserName = "username";
+
+        [SerializeField]
+        [Tooltip("itch.io project name.")]
+        private string _itchGameName = "project";
+
+        [SerializeField]
+        [Tooltip("Upload version number (optional).")]
+        private string _versionNumber = "";
+
+        #endregion
+        
+        #region Public Properties
+
+        public static string versionNumber
         {
-            Instance._versionNumber = value;
+            get
+            {
+                return Instance._versionNumber;
+            }
+            set
+            {
+                Instance._versionNumber = value;
+            }
         }
-    }
 
-    public static string butlerPath
-    {
-        get
+        public static string butlerPath
         {
-            return Instance._butlerPath;
+            get
+            {
+                return Instance._butlerPath;
+            }
         }
-    }
 
-    public static string itchUserName
-    {
-        get
+        public static string itchUserName
         {
-            return Instance._itchUserName;
+            get
+            {
+                return Instance._itchUserName;
+            }
         }
-    }
 
-    public static string itchGameName
-    {
-        get
+        public static string itchGameName
         {
-            return Instance._itchGameName;
+            get
+            {
+                return Instance._itchGameName;
+            }
         }
+
+        #endregion
     }
-
-    #endregion
-}
-
 }

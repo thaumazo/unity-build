@@ -77,7 +77,9 @@ public static class BuildProject
     public static void RegisterPlatform(BuildPlatform platform)
     {
         if (platforms == null)
+        {
             platforms = new List<BuildPlatform>();
+        }
 
         platforms.Add(platform);
     }
@@ -89,7 +91,9 @@ public static class BuildProject
     public static void RegisterPreBuildAction(BuildAction action)
     {
         if (preBuildActions == null)
+        {
             preBuildActions = new List<BuildAction>();
+        }
 
         preBuildActions.Add(action);
     }
@@ -101,8 +105,10 @@ public static class BuildProject
     public static void RegisterPostBuildAction(BuildAction action)
     {
         if (postBuildActions == null)
+        {
             postBuildActions = new List<BuildAction>();
-
+        }
+        
         postBuildActions.Add(action);
     }
 
