@@ -2,7 +2,7 @@
 using System.Reflection;
 using UnityEditor;
 
-namespace SuperSystems.UnityBuild
+namespace Unitybuild
 {
     [InitializeOnLoad]
     public abstract class PreBuildAction : BuildAction

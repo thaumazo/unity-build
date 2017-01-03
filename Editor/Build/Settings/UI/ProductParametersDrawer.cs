@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-namespace SuperSystems.UnityBuild
+namespace Unitybuild
 {
     [CustomPropertyDrawer(typeof(ProductParameters))]
     public class ProductParametersDrawer : PropertyDrawer

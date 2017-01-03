@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace SuperSystems.UnityBuild
+namespace Unitybuild
 {
     public abstract class BuildAction : IComparable<BuildAction>
     {

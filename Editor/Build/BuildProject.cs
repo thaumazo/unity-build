@@ -5,7 +5,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SuperSystems.UnityBuild
+namespace Unitybuild
 {
     public static class BuildProject
     {

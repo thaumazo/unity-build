@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-namespace SuperSystems.UnityBuild
+namespace Unitybuild
 {
     public class UnityBuildWindow : EditorWindow
     {
@@ -9,7 +9,8 @@ namespace SuperSystems.UnityBuild
 
         #region MenuItems
 
-        [MenuItem("Window/SuperUnityBuild")]
+        //[MenuItem("Window/SuperUnityBuild")]
+        [MenuItem("Window/UnityBuild")]
         public static void ShowWindow()
         {
             EditorWindow.GetWindow<UnityBuildWindow>();
@@ -19,7 +20,8 @@ namespace SuperSystems.UnityBuild
 
         protected void OnEnable()
         {
-            GUIContent title = new GUIContent("SuperUnityBuild");
+            //GUIContent title = new GUIContent("SuperUnityBuild");
+            GUIContent title = new GUIContent("UnityBuild");
             titleContent = title;
         }
 
@@ -36,8 +38,9 @@ namespace SuperSystems.UnityBuild
 
             SerializedObject obj = new SerializedObject(BuildSettings.Instance);
 
-            EditorGUILayout.LabelField("Super Unity Build", mainTitleStyle);
-            EditorGUILayout.LabelField("by Super Systems Softworks", subTitleStyle);
+            EditorGUILayout.LabelField("Unity Build", mainTitleStyle);
+            //EditorGUILayout.LabelField("Super Unity Build", mainTitleStyle);
+            //EditorGUILayout.LabelField("by Super Systems Softworks", subTitleStyle);
             GUILayout.Space(10);
 
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos, false, false);

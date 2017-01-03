@@ -2,13 +2,14 @@
 using UnityEditor;
 using System.IO;
 
-namespace SuperSystems.UnityBuild
+namespace Unitybuild
 {
     public class UploadItch : PostBuildAction
     {
         private const string WINDOWS = "windows";
         private const string OSX = "osx";
         private const string LINUX = "linux";
+        private const string ANDROID = "android";
 
         #region MenuItems
 
@@ -110,6 +111,10 @@ namespace SuperSystems.UnityBuild
                     return OSX + "-intel64";
                 case BuildTarget.StandaloneOSXUniversal:
                     return OSX + "-universal";
+
+                // Mobile
+                case BuildTarget.Android:
+                    return ANDROID;
 
                 default:
                     return null;

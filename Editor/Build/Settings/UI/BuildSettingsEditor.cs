@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-namespace SuperSystems.UnityBuild
+namespace Unitybuild
 {
     [CustomEditor(typeof(BuildSettings))]
     public class BuildSettingsEditor : Editor

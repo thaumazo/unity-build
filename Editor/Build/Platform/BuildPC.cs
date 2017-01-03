@@ -1,42 +1,41 @@
 ﻿using UnityEditor;
 
-namespace SuperSystems.UnityBuild
+namespace Unitybuild
 {
-
-[System.Serializable]
-public class BuildPC : BuildPlatform
-{
-    #region Constants (SET VALUES)
-
-    private const string _name = "PC";
-    private const string _binaryNameFormat = "{0}.exe";
-    private const string _dataDirNameFormat = "{0}_Data";
-
-    #endregion
-
-    public BuildPC()
+    [System.Serializable]
+    public class BuildPC : BuildPlatform
     {
-        enabled = false;
-        platformName = _name;
-        architectures = new BuildArchitecture[] { 
-            new BuildArchitecture(BuildTarget.StandaloneWindows, "Windows x86", true),
-            new BuildArchitecture(BuildTarget.StandaloneWindows64, "Windows x64", false)
-        };
+        #region Constants (SET VALUES)
+
+        private const string _name = "PC";
+        private const string _binaryNameFormat = "{0}.exe";
+        private const string _dataDirNameFormat = "{0}_Data";
+
+        #endregion
+
+        public BuildPC()
+        {
+            enabled = false;
+            platformName = _name;
+            architectures = new BuildArchitecture[] 
+            {
+                new BuildArchitecture(BuildTarget.StandaloneWindows, "Windows x86", true),
+                new BuildArchitecture(BuildTarget.StandaloneWindows64, "Windows x64", false)
+            };
+        }
+
+        #region Methods & Properties (DO NOT EDIT)
+
+        public override string binaryNameFormat
+        {
+            get { return _binaryNameFormat; }
+        }
+
+        public override string dataDirNameFormat
+        {
+            get { return _dataDirNameFormat; }
+        }
+
+        #endregion
     }
-
-    #region Methods & Properties (DO NOT EDIT)
-
-    public override string binaryNameFormat
-    {
-        get { return _binaryNameFormat; }
-    }
-
-    public override string dataDirNameFormat
-    {
-        get { return _dataDirNameFormat; }
-    }
-
-    #endregion
-}
-
 }

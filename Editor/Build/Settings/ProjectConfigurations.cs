@@ -2,7 +2,7 @@
 using UnityEditor;
 using System.Collections.Generic;
 
-namespace SuperSystems.UnityBuild
+namespace Unitybuild
 {
     [System.Serializable]
     public class ProjectConfigurations

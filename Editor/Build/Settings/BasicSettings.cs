@@ -2,7 +2,7 @@
 using UnityEditor;
 using System.IO;
 
-namespace SuperSystems.UnityBuild
+namespace Unitybuild
 {
     [System.Serializable]
     public class BasicSettings

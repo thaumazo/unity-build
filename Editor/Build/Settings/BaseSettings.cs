@@ -2,7 +2,7 @@
 using UnityEditor;
 using System.IO;
 
-namespace SuperSystems.UnityBuild
+namespace Unitybuild
 { 
     public class BaseSettings : ScriptableObject
     {

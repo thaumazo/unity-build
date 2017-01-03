@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace SuperSystems.UnityBuild
+namespace Unitybuild
 {
     public sealed class BuildAssetBundles : PostBuildAction
     {

@@ -3,25 +3,23 @@
 namespace Unitybuild
 {
     [System.Serializable]
-    public class BuildLinux : BuildPlatform
+    class BuildAndroid : BuildPlatform
     {
         #region Constants (SET VALUES)
 
-        private const string _name = "Linux";
-        private const string _binaryNameFormat = "{0}.x86";
-        private const string _dataDirNameFormat = "{0}_Data";
+        private const string _name = "Android";
+        private const string _binaryNameFormat = "{0}.apk";
+        private const string _dataDirNameFormat = "";
 
         #endregion
 
-        public BuildLinux()
+        public BuildAndroid()
         {
             enabled = false;
             platformName = _name;
             architectures = new BuildArchitecture[] 
             {
-                new BuildArchitecture(BuildTarget.StandaloneLinuxUniversal, "Linux Universal", true),
-                new BuildArchitecture(BuildTarget.StandaloneLinux, "Linux x86", false),
-                new BuildArchitecture(BuildTarget.StandaloneLinux64, "Linux x64", false)
+                new BuildArchitecture(BuildTarget.Android, "Android", true)
             };
         }
 

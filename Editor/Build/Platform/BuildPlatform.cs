@@ -4,7 +4,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace SuperSystems.UnityBuild
+namespace Unitybuild
 {
     [System.Serializable]
     public class BuildPlatform
