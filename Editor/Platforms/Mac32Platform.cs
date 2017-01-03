@@ -3,7 +3,7 @@ using UnityEditor;
 namespace UnityBuild
 {
 
-    public class MacPlatform : BuildPlatform
+    public class Mac32Platform : BuildPlatform
     {
         #region Constants (SET VALUES)
 

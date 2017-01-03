@@ -3,7 +3,7 @@ using UnityEditor;
 namespace UnityBuild
 {
 
-    public class LinuxPlatform : BuildPlatform
+    public class AndroidPlatform : BuildPlatform
     {
         #region Constants
 

@@ -3,9 +3,9 @@ using UnityEditor;
 namespace UnityBuild
 {
 
-    public class LinuxPlatform : BuildPlatform
+    public class Linux32Platform : BuildPlatform
     {
-        #region Constants (SET VALUES)
+        #region Constants
 
         private const BuildTarget _target = BuildTarget.StandaloneLinux;
         private const string _name = "Linux32";

@@ -4,33 +4,31 @@ using UnityEditor;
 
 namespace UnityBuild
 {
-
-[InitializeOnLoad]
-public abstract class PostBuildAction : BuildAction
-{
-    #region Contructor
-
-    /// <summary>
-    /// Constructor
-    /// </summary>
-    static PostBuildAction()
+    [InitializeOnLoad]
+    public abstract class PostBuildAction : BuildAction
     {
-        // Find all classes that inherit from BuildPlatform and register them with BuildProject.
-        Type ti = typeof(PostBuildAction);
+        #region Contructor
 
-        foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        static PostBuildAction()
         {
-            foreach (Type t in asm.GetTypes())
+            // Find all classes that inherit from BuildPlatform and register them with BuildProject.
+            Type ti = typeof(PostBuildAction);
+
+            foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
             {
-                if (ti.IsAssignableFrom(t) && ti != t)
+                foreach (Type t in asm.GetTypes())
                 {
-                    BuildProject.RegisterPostBuildAction((BuildAction)Activator.CreateInstance(t));
+                    if (ti.IsAssignableFrom(t) && ti != t)
+                    {
+                        BuildProject.RegisterPostBuildAction((BuildAction)Activator.CreateInstance(t));
+                    }
                 }
             }
         }
+
+        #endregion
     }
-
-    #endregion
-}
-
 }

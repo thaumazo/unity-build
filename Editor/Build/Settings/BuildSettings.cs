@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace UnityBuild
 {
-
     [InitializeOnLoad]
     public class BuildSettings : BaseSettings
     {
@@ -100,5 +99,4 @@ namespace UnityBuild
 
         #endregion
     }
-
 }

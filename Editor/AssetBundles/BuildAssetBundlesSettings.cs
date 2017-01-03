@@ -1,82 +1,79 @@
-﻿using System.IO;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace UnityBuild
 {
-
-[InitializeOnLoad]
-public class BuildAssetBundlesSettings : BaseSettings
-{
-    #region Singleton
-
-    private static BuildAssetBundlesSettings instance = null;
-
-    public static BuildAssetBundlesSettings Instance
+    [InitializeOnLoad]
+    public class BuildAssetBundlesSettings : BaseSettings
     {
-        get
+        #region Singleton
+
+        private static BuildAssetBundlesSettings instance = null;
+
+        public static BuildAssetBundlesSettings Instance
         {
-            if (instance == null)
+            get
             {
-                instance = CreateAsset<BuildAssetBundlesSettings>("BuildAssetBundlesSettings");
+                if (instance == null)
+                {
+                    instance = CreateAsset<BuildAssetBundlesSettings>("BuildAssetBundlesSettings");
+                }
+
+                return instance;
             }
-
-            return instance;
         }
-    }
 
-    #endregion
+        #endregion Singleton
 
-    #region MenuItems
+        #region MenuItems
 
-    [MenuItem("Build/AssetBundles/Edit Settings", priority = 0)]
-    public static void EditSettings()
-    {
-        Selection.activeObject = Instance;
-        EditorApplication.ExecuteMenuItem("Window/Inspector");
-    }
-
-    #endregion
-    
-    #region Variables
-
-    [Header("AssetBundle Build Settings (Field Info in Tooltips)")]
-
-    /// <summary>
-    /// The path where AssetBundles are built. {0} = binPath
-    /// </summary>
-    [SerializeField]
-    [Tooltip("The path where AssetBundles are built. {0} = binPath")]
-    private string _buildPath = "{0}/Bundles";
-
-    /// <summary>
-    /// Flag indicating if the AssetBundles should be copied into the game's data directory.
-    /// </summary>
-    [SerializeField]
-    [Tooltip("Flag indicating if the AssetBundles should be copied into the game's data directory.")]
-    private bool _copyToBuild = true;
-
-    #endregion
-
-    #region Public Properties
-
-    public static string buildPath
-    {
-        get
+        [MenuItem("Build/AssetBundles/Edit Settings", priority = 0)]
+        public static void EditSettings()
         {
-            return string.Format(Instance._buildPath, BuildSettings.binPath);
+            Selection.activeObject = Instance;
+            EditorApplication.ExecuteMenuItem("Window/Inspector");
         }
-    }
 
-    public static bool copyToBuild
-    {
-        get
+        #endregion MenuItems
+
+        #region Variables
+
+        [Header("AssetBundle Build Settings (Field Info in Tooltips)")]
+
+        /// <summary>
+        /// The path where AssetBundles are built. {0} = binPath
+        /// </summary>
+        [SerializeField]
+        [Tooltip("The path where AssetBundles are built. {0} = binPath")]
+        private string _buildPath = "{0}/Bundles";
+
+        /// <summary>
+        /// Flag indicating if the AssetBundles should be copied into the game's data directory.
+        /// </summary>
+        [SerializeField]
+        [Tooltip("Flag indicating if the AssetBundles should be copied into the game's data directory.")]
+        private bool _copyToBuild = true;
+
+        #endregion Variables
+
+        #region Public Properties
+
+        public static string buildPath
         {
-            return Instance._copyToBuild;
+            get
+            {
+                return string.Format(Instance._buildPath, BuildSettings.binPath);
+            }
         }
+
+        public static bool copyToBuild
+        {
+            get
+            {
+                return Instance._copyToBuild;
+            }
+        }
+
+        #endregion Public Properties
     }
-
-    #endregion
-}
-
 }
