@@ -6,82 +6,80 @@ using UnityEngine;
 
 namespace SuperSystems.UnityBuild
 {
-
-[Serializable]
-public class BuildSettings : BaseSettings
-{
-    #region Singleton
-
-    private static BuildSettings instance = null;
-
-    public static BuildSettings Instance
+    [Serializable]
+    public class BuildSettings : BaseSettings
     {
-        get
+        #region Singleton
+
+        private static BuildSettings instance = null;
+
+        public static BuildSettings Instance
         {
-            if (instance == null)
+            get
             {
-                instance = CreateAsset<BuildSettings>("UnityBuildSettings");
+                if (instance == null)
+                {
+                    instance = CreateAsset<BuildSettings>("UnityBuildSettings");
+                }
+
+                return instance;
             }
-
-            return instance;
         }
-    }
 
-    #endregion
+        #endregion
 
-    #region Variables
+        #region Variables
 
-    public BasicSettings _basicSettings = new BasicSettings();
-    public ProductParameters _productParameters = new ProductParameters();
-    public BuildReleaseTypeList _releaseTypeList = new BuildReleaseTypeList();
-    public BuildPlatformList _platformList = new BuildPlatformList();
-    public ProjectConfigurations _projectConfigurations = new ProjectConfigurations();
+        public BasicSettings _basicSettings = new BasicSettings();
+        public ProductParameters _productParameters = new ProductParameters();
+        public BuildReleaseTypeList _releaseTypeList = new BuildReleaseTypeList();
+        public BuildPlatformList _platformList = new BuildPlatformList();
+        public ProjectConfigurations _projectConfigurations = new ProjectConfigurations();
 
-    #endregion
+        #endregion
 
-    #region Properties
+        #region Properties
 
-    public static BasicSettings basicSettings
-    {
-        get
+        public static BasicSettings basicSettings
         {
-            return Instance._basicSettings;
+            get
+            {
+                return Instance._basicSettings;
+            }
         }
-    }
 
-    public static ProductParameters productParameters
-    {
-        get
+        public static ProductParameters productParameters
         {
-            return Instance._productParameters;
+            get
+            {
+                return Instance._productParameters;
+            }
         }
-    }
 
-    public static BuildReleaseTypeList releaseTypeList
-    {
-        get
+        public static BuildReleaseTypeList releaseTypeList
         {
-            return Instance._releaseTypeList;
+            get
+            {
+                return Instance._releaseTypeList;
+            }
         }
-    }
 
-    public static BuildPlatformList platformList
-    {
-        get
+        public static BuildPlatformList platformList
         {
-            return Instance._platformList;
+            get
+            {
+                return Instance._platformList;
+            }
         }
-    }
 
-    public static ProjectConfigurations projectConfigurations
-    {
-        get
+        public static ProjectConfigurations projectConfigurations
         {
-            return Instance._projectConfigurations;
+            get
+            {
+                return Instance._projectConfigurations;
+            }
         }
+
+        #endregion
     }
-
-    #endregion
-}
-
 }

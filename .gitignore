@@ -22,3 +22,9 @@ Icon?
 ehthumbs.db
 Thumbs.db
 $RECYCLE.BIN/
+
+######################
+# Unity Meta Files   #
+######################
+
+*.cs.meta

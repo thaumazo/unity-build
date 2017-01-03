@@ -3,44 +3,42 @@ using UnityEditor;
 
 namespace SuperSystems.UnityBuild
 {
-
-[CustomPropertyDrawer(typeof(BasicSettings))]
-public class BasicSettingsDrawer : PropertyDrawer
-{
-    private bool show = true;
-
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    [CustomPropertyDrawer(typeof(BasicSettings))]
+    public class BasicSettingsDrawer : PropertyDrawer
     {
-        EditorGUI.BeginProperty(position, GUIContent.none, property);
+        private bool show = true;
 
-        EditorGUILayout.BeginHorizontal();
-        UnityBuildGUIUtility.DropdownHeader("Basic Settings", ref show, GUILayout.ExpandWidth(true));
-        UnityBuildGUIUtility.HelpButton("Parameter-Details#Basic-Settings");
-        EditorGUILayout.EndHorizontal();
-
-        if (show)
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            EditorGUILayout.BeginVertical(UnityBuildGUIUtility.dropdownContentStyle);
+            EditorGUI.BeginProperty(position, GUIContent.none, property);
 
-            GUILayout.Label("Build Path Options", UnityBuildGUIUtility.midHeaderStyle);
+            EditorGUILayout.BeginHorizontal();
+            UnityBuildGUIUtility.DropdownHeader("Basic Settings", ref show, GUILayout.ExpandWidth(true));
+            UnityBuildGUIUtility.HelpButton("Parameter-Details#Basic-Settings");
+            EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.PropertyField(property.FindPropertyRelative("baseBuildFolder"));
-            EditorGUILayout.PropertyField(property.FindPropertyRelative("buildPath"));
+            if (show)
+            {
+                EditorGUILayout.BeginVertical(UnityBuildGUIUtility.dropdownContentStyle);
 
-            
-            GUILayout.Space(20);
-            GUILayout.Label("Post-Build Options", UnityBuildGUIUtility.midHeaderStyle);
+                GUILayout.Label("Build Path Options", UnityBuildGUIUtility.midHeaderStyle);
 
-            SerializedProperty openBuildFolderAfterBuild = property.FindPropertyRelative("openFolderPostBuild");
-            openBuildFolderAfterBuild.boolValue = EditorGUILayout.ToggleLeft(" Open output folder after build", openBuildFolderAfterBuild.boolValue);
+                EditorGUILayout.PropertyField(property.FindPropertyRelative("baseBuildFolder"));
+                EditorGUILayout.PropertyField(property.FindPropertyRelative("buildPath"));
 
-            property.serializedObject.ApplyModifiedProperties();
 
-            EditorGUILayout.EndVertical();
+                GUILayout.Space(20);
+                GUILayout.Label("Post-Build Options", UnityBuildGUIUtility.midHeaderStyle);
+
+                SerializedProperty openBuildFolderAfterBuild = property.FindPropertyRelative("openFolderPostBuild");
+                openBuildFolderAfterBuild.boolValue = EditorGUILayout.ToggleLeft(" Open output folder after build", openBuildFolderAfterBuild.boolValue);
+
+                property.serializedObject.ApplyModifiedProperties();
+
+                EditorGUILayout.EndVertical();
+            }
+
+            EditorGUI.EndProperty();
         }
-
-        EditorGUI.EndProperty();
     }
-}
-
 }

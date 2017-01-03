@@ -4,33 +4,31 @@ using UnityEditor;
 
 namespace SuperSystems.UnityBuild
 {
-
-[InitializeOnLoad]
-public abstract class PreBuildAction : BuildAction
-{
-    #region Contructor
-
-    /// <summary>
-    /// Constructor
-    /// </summary>
-    static PreBuildAction()
+    [InitializeOnLoad]
+    public abstract class PreBuildAction : BuildAction
     {
-        // Find all classes that inherit from IBuildPlatform and register them with BuildProject.
-        Type ti = typeof(PreBuildAction);
+        #region Contructor
 
-        foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        static PreBuildAction()
         {
-            foreach (Type t in asm.GetTypes())
+            // Find all classes that inherit from IBuildPlatform and register them with BuildProject.
+            Type ti = typeof(PreBuildAction);
+
+            foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
             {
-                if (ti.IsAssignableFrom(t) && ti != t)
+                foreach (Type t in asm.GetTypes())
                 {
-                    BuildProject.RegisterPreBuildAction((BuildAction)Activator.CreateInstance(t));
+                    if (ti.IsAssignableFrom(t) && ti != t)
+                    {
+                        BuildProject.RegisterPreBuildAction((BuildAction)Activator.CreateInstance(t));
+                    }
                 }
             }
         }
+
+        #endregion
     }
-
-    #endregion
-}
-
 }

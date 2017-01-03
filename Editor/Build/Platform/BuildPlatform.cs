@@ -6,105 +6,103 @@ using UnityEngine;
 
 namespace SuperSystems.UnityBuild
 {
-
-[System.Serializable]
-public class BuildPlatform
-{
-    public bool enabled = false;
-    public BuildDistributionList distributionList;
-
-    #region Abstract
-
-    /// <summary>
-    /// Unity build target definition.
-    /// </summary>
-    //public abstract BuildTarget target { get; }
-    public BuildArchitecture[] architectures;
-
-    /// <summary>
-    /// Platform name.
-    /// </summary>
-    public string platformName;
-
-    /// <summary>
-    /// The format of the binary executable name (e.g. {0}.exe). {0} = Executable name specified in BuildSettings.basicSettings.
-    /// </summary>
-    public virtual string binaryNameFormat { get { return ""; } }
-
-    /// <summary>
-    /// The format of the data directory (e.g. {0}_Data). {0} = Executable name specified in BuildSettings.basicSettings.
-    /// </summary>
-    public virtual string dataDirNameFormat { get { return ""; } }
-
-    #endregion
-
-    #region Public Methods
-
-    /// <summary>
-    /// Perform build for platform.
-    /// </summary>
-    public void Build()
+    [System.Serializable]
+    public class BuildPlatform
     {
-        BuildProject.PerformBuild(this);
-    }
+        public bool enabled = false;
+        public BuildDistributionList distributionList;
 
-    #endregion
+        #region Abstract
 
-    #region Public Properties
+        /// <summary>
+        /// Unity build target definition.
+        /// </summary>
+        //public abstract BuildTarget target { get; }
+        public BuildArchitecture[] architectures;
 
-    public bool atLeastOneArch
-    {
-        get
+        /// <summary>
+        /// Platform name.
+        /// </summary>
+        public string platformName;
+
+        /// <summary>
+        /// The format of the binary executable name (e.g. {0}.exe). {0} = Executable name specified in BuildSettings.basicSettings.
+        /// </summary>
+        public virtual string binaryNameFormat { get { return ""; } }
+
+        /// <summary>
+        /// The format of the data directory (e.g. {0}_Data). {0} = Executable name specified in BuildSettings.basicSettings.
+        /// </summary>
+        public virtual string dataDirNameFormat { get { return ""; } }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Perform build for platform.
+        /// </summary>
+        public void Build()
         {
-            bool atLeastOneArch = false;
-            for (int i = 0; i < architectures.Length && !atLeastOneArch; i++)
+            BuildProject.PerformBuild(this);
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        public bool atLeastOneArch
+        {
+            get
             {
-                atLeastOneArch |= architectures[i].enabled;
+                bool atLeastOneArch = false;
+                for (int i = 0; i < architectures.Length && !atLeastOneArch; i++)
+                {
+                    atLeastOneArch |= architectures[i].enabled;
+                }
+
+                return atLeastOneArch;
             }
-
-            return atLeastOneArch;
         }
-    }
 
-    public bool atLeastOneDistribution
-    {
-        get
+        public bool atLeastOneDistribution
         {
-            bool atLeastOneDist = false;
-            for (int i = 0; i < distributionList.distributions.Length && !atLeastOneDist; i++)
+            get
             {
-                atLeastOneDist |= distributionList.distributions[i].enabled;
+                bool atLeastOneDist = false;
+                for (int i = 0; i < distributionList.distributions.Length && !atLeastOneDist; i++)
+                {
+                    atLeastOneDist |= distributionList.distributions[i].enabled;
+                }
+
+                return atLeastOneDist;
             }
-
-            return atLeastOneDist;
         }
-    }
 
-    public string buildPath
-    {
-        get
+        public string buildPath
         {
-            return BuildSettings.basicSettings.buildPath + Path.DirectorySeparatorChar + platformName + Path.DirectorySeparatorChar;
+            get
+            {
+                return BuildSettings.basicSettings.buildPath + Path.DirectorySeparatorChar + platformName + Path.DirectorySeparatorChar;
+            }
         }
-    }
 
-    public string dataDirectory
-    {
-        get
+        public string dataDirectory
         {
-            return buildPath + string.Format(dataDirNameFormat, BuildSettings.basicSettings.executableName) + Path.DirectorySeparatorChar;
+            get
+            {
+                return buildPath + string.Format(dataDirNameFormat, BuildSettings.basicSettings.executableName) + Path.DirectorySeparatorChar;
+            }
         }
-    }
 
-    public string exeName
-    {
-        get
+        public string exeName
         {
-            return string.Format(binaryNameFormat, BuildSettings.basicSettings.executableName);
+            get
+            {
+                return string.Format(binaryNameFormat, BuildSettings.basicSettings.executableName);
+            }
         }
+
+        #endregion
     }
-
-    #endregion
-}
-
 }
