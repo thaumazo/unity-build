@@ -40,7 +40,7 @@ namespace UnityBuild
         [Header("Itch.io Upload Settings (Field Info in Tooltips)")]
 
         [SerializeField]
-        [Tooltip("Path to butler executable.")]
+        [Tooltip("Path to butler executable. If you added butler to your path variable you can get this using the \"butler which\" command.")]
         private string _butlerPath = "";
 
         [SerializeField]
@@ -49,7 +49,7 @@ namespace UnityBuild
 
         [SerializeField]
         [Tooltip("itch.io project name.")]
-        private string _itchGameName = "project";
+        private string _itchGameName = Application.productName;
 
         [SerializeField]
         [Tooltip("Upload version number (optional).")]

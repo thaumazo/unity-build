@@ -107,7 +107,7 @@ namespace UnityBuild
         {
             get
             {
-                return BuildSettings.binPath + Path.DirectorySeparatorChar + name + Path.DirectorySeparatorChar;
+                return BuildSettings.buildPath + Path.DirectorySeparatorChar + name + Path.DirectorySeparatorChar;
             }
         }
 

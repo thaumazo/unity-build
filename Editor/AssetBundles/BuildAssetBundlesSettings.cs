@@ -62,7 +62,7 @@ namespace UnityBuild
         {
             get
             {
-                return string.Format(Instance._buildPath, BuildSettings.binPath);
+                return string.Format(Instance._buildPath, BuildSettings.buildPath);
             }
         }
 

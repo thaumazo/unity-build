@@ -52,7 +52,7 @@ namespace UnityBuild
         // Path is relative to the Unity project's base folder unless an absolute path is given.
         [SerializeField]
         [Tooltip("The base path where builds are output.")]
-        private string _binPath = "bin";
+        private string _buildPath = "Builds";
 
         // A list of scenes (filepaths) to include in the build. The first listed scene will be loaded first.
         [SerializeField]
@@ -82,9 +82,9 @@ namespace UnityBuild
             get { return Instance._binName; }
         }
 
-        public static string binPath
+        public static string buildPath
         {
-            get { return Instance._binPath.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar); }
+            get { return Instance._buildPath.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar); }
         }
 
         public static string[] scenesInBuild

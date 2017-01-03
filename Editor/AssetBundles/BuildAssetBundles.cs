@@ -55,7 +55,7 @@ namespace UnityBuild
             {
                 return;
             }
-
+            
             // Path where this platform's AssetBundles will be built.
             string platformBundlePath = BuildAssetBundlesSettings.buildPath + Path.DirectorySeparatorChar + platform.name;
 
