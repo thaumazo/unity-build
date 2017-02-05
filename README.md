@@ -1,13 +1,13 @@
 # UnityBuild
 > An expandable and customizable framework for multiplatform builds with Unity.
 
-The primary goal of this project is to take build scripts that I've already used on some projects and make them slightly more generic, expandable, and customizable. This includes supporting the generation of AssetBundles as well as preparing/uploading builds for services like itch.io and Steam.
+The primary goal of this project is to take build scripts that Chase has already used on some projects and make them slightly more generic, expandable, and customizable. This includes supporting the generation of AssetBundles as well as preparing/uploading builds for services like itch.io and Steam.
 
 ## Basic Usage
 
 #### Install
 Do one of the following:
-* [Download](https://github.com/Chaser324/unity-build/archive/master.zip) this project and copy the `Editor` dirctory into your project's assets directory.
+* [Download](https://github.com/thaumazo/unity-build/archive/master.zip) this project and copy the `Editor` dirctory into your project's assets directory.
 * Make this repository a git submodule within your project's assets directory.
 
 #### Generate Settings
@@ -42,6 +42,7 @@ Bug reports, feature requests, and pull requests are welcome and appreciated.
 
 ## Credits
 * **Chase Pettit** - [github](https://github.com/Chaser324), [twitter](http://twitter.com/chasepettit)
+* **Thaumazo** - [github](https://github.com/Thaumazo), [twitter](http://twitter.com/stealthific), [itch](thaumazo.itch.io)
 
 ## License
-All code in this repository ([unity-build](https://github.com/Chaser324/unity-build)) is made freely available under the MIT license.
+All code in this repository ([unity-build](https://github.com/thaumazo/unity-build)) is made freely available under the MIT license.
