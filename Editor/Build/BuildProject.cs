@@ -131,8 +131,13 @@ namespace UnityBuild
                     Directory.CreateDirectory(platform.buildPath + platform.exeName);
                     break;
             }
+            BuildPlayerOptions options = new BuildPlayerOptions();
 
-            BuildPipeline.BuildPlayer(BuildSettings.scenesInBuild, platform.buildPath + platform.exeName, platform.target, BuildOptions.None);
+            options.scenes = BuildSettings.scenesInBuild;
+            options.locationPathName = platform.buildPath + platform.exeName;
+            options.target = platform.target;
+
+            BuildPipeline.BuildPlayer(options);
 
             // Copy any other data.
             for (int i = 0; i < BuildSettings.copyToBuild.Length; i++)

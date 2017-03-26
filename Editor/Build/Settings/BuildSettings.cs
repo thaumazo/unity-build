@@ -46,7 +46,7 @@ namespace UnityBuild
         // The name of executable file (e.g. mygame.exe, mygame.app)
         [SerializeField]
         [Tooltip("The name of executable file (e.g. mygame.exe, mygame.app)")]
-        private string _binName = Application.productName;
+        private string _binName = "";
 
         // The base path where builds are output.
         // Path is relative to the Unity project's base folder unless an absolute path is given.

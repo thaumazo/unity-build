@@ -49,7 +49,7 @@ namespace UnityBuild
 
         [SerializeField]
         [Tooltip("itch.io project name.")]
-        private string _itchGameName = Application.productName;
+        private string _itchGameName = "gameName";
 
         [SerializeField]
         [Tooltip("Upload version number (optional).")]
