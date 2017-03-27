@@ -15,13 +15,13 @@ namespace UnityBuild
         static PostBuildAction()
         {
             // Find all classes that inherit from BuildPlatform and register them with BuildProject.
-            Type ti = typeof(PostBuildAction);
+            Type childClasses = typeof(PostBuildAction);
 
-            foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
-                foreach (Type t in asm.GetTypes())
+                foreach (Type t in assembly.GetTypes())
                 {
-                    if (ti.IsAssignableFrom(t) && ti != t)
+                    if (childClasses.IsAssignableFrom(t) && childClasses != t)
                     {
                         BuildProject.RegisterPostBuildAction((BuildAction)Activator.CreateInstance(t));
                     }

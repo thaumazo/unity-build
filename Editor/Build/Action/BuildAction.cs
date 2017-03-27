@@ -6,6 +6,9 @@ namespace UnityBuild
 {
     public abstract class BuildAction : IComparable<BuildAction>
     {
+        protected const string settingsBasePath         = "Build/Edit Settings/";
+        protected const string customizeBuildBasePath   = "Build/Customize Build/";
+        protected const string executeBasePath          = "Build/Execute/";
         /// <summary>
         /// Build action.
         /// </summary>

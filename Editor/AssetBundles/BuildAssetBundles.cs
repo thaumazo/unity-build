@@ -8,25 +8,33 @@ namespace UnityBuild
     {
         #region MenuItems
 
-        [MenuItem("Build/AssetBundles/Build AssetBundles", false, 50)]
+        [MenuItem(executeBasePath + "Build AssetBundles")]
         private static void BuildAllAssetBundles()
         {
             BuildAll();
         }
 
-        [MenuItem("Build/AssetBundles/Clear Cache", false, 51)]
+        [MenuItem(executeBasePath + "AssetBundles/Clear Cache")]
         private static void ClearCache()
         {
             Caching.CleanCache();
         }
 
-        [MenuItem("Build/AssetBundles/Delete Bundles", false, 52)]
+        [MenuItem(executeBasePath + "AssetBundles/Delete Bundles")]
         private static void DeleteBundles()
         {
             if (Directory.Exists(BuildAssetBundlesSettings.buildPath))
+            {
                 FileUtil.DeleteFileOrDirectory(BuildAssetBundlesSettings.buildPath);
+            }
         }
 
+        [MenuItem(settingsBasePath + "AssetBundle settings")]
+        public static void EditSettings()
+        {
+            Selection.activeObject = BuildAssetBundlesSettings.Instance;
+            EditorApplication.ExecuteMenuItem("Window/Inspector");
+        }
         #endregion
 
         #region Public Methods

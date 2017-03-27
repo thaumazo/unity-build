@@ -24,25 +24,13 @@ namespace UnityBuild
         
         #endregion
 
-        #region MenuItems
-
-        [MenuItem("Build/Launch/Edit Settings", priority = 0)]
-
-        public static void EditSettings()
-        {
-            Selection.activeObject = Instance;
-            EditorApplication.ExecuteMenuItem("Window/Inspector");
-        }
-
-        #endregion
-
         #region Variables
 
         [Header("Launch After Build Settings (Field Info in Tooltips)")]
 
         [SerializeField]
         [Tooltip("The relative path from the build folder to the executable.")]
-        private string _buildPlatformPath = "";
+        private string _pathToExecutable = "";
 
         [SerializeField]
         [Tooltip("The amount of game instances to launch after a build. If you want more than 16 instances you can just launch twice.")]
@@ -60,15 +48,15 @@ namespace UnityBuild
 
         #region Public Properties
 
-        public static string buildPlatformPath
+        public static string pathToExecutable
         {
             get
             {
-                return Instance._buildPlatformPath;
+                return Instance._pathToExecutable;
             }
             set
             {
-                Instance._buildPlatformPath = value;
+                Instance._pathToExecutable = value;
             }
         }
 

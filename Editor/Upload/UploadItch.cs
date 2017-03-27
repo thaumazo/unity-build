@@ -10,9 +10,11 @@ namespace UnityBuild
         private const string OSX = "osx";
         private const string LINUX = "linux";
 
+        private const string shouldUploadItchKey = "shouldUploadItch";
+
         #region MenuItems
 
-        [MenuItem("Build/Upload/itch.io/Execute", false, 50)]
+        [MenuItem(executeBasePath + "Upload Itch")]
         private static void UploadAll()
         {
             for (int i = 0; i < BuildProject.platforms.Count; i++)
@@ -22,18 +24,26 @@ namespace UnityBuild
             }
         }
 
-        [MenuItem("Build/Upload/itch.io/Auto Upload")]
+        [MenuItem(customizeBuildBasePath + "Auto Upload to Itch")]
         private static void ToggleAutoUpload()
         {
-            EditorPrefs.SetBool("buildUploadItchAuto", !EditorPrefs.GetBool("buildUploadItchAuto", false));
+            EditorPrefs.SetBool(shouldUploadItchKey, !EditorPrefs.GetBool(shouldUploadItchKey, false));
         }
 
-        [MenuItem("Build/Upload/itch.io/Auto Upload", true)]
+        [MenuItem(customizeBuildBasePath + "Auto Upload to Itch", true)]
         private static bool ToggleAutoUploadValidate()
         {
-            Menu.SetChecked("Build/Upload/itch.io/Auto Upload", EditorPrefs.GetBool("buildUploadItchAuto", false));
+            Menu.SetChecked(customizeBuildBasePath + "Auto Upload to Itch", EditorPrefs.GetBool(shouldUploadItchKey, false));
             return true;
         }
+
+        [MenuItem(settingsBasePath + "Upload To Itch Settings")]
+        public static void EditSettings()
+        {
+            Selection.activeObject = UploadItchSettings.Instance;
+            EditorApplication.ExecuteMenuItem("Window/Inspector");
+        }
+
 
         #endregion
 
@@ -41,7 +51,7 @@ namespace UnityBuild
 
         public override void Execute(BuildPlatform platform)
         {
-            if (EditorPrefs.GetBool("buildUploadItchAuto", false))
+            if (EditorPrefs.GetBool(shouldUploadItchKey, false))
             {
                 PerformUpload(platform);
             }

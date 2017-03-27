@@ -1,30 +1,40 @@
-﻿using UnityEngine;
-using UnityEditor;
-using System;
+﻿using UnityEditor;
 using System.IO;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 
 namespace UnityBuild
 {
     public class BuildAndLaunch : PostBuildAction
     {
-        const string shouldPerformLaunchKey = "shouldPerformLaunch";
+        private const string shouldPerformLaunchKey = "shouldPerformLaunch";
 
         #region MenuItems
-        [MenuItem("Build/Launch/Build And Launch", false, 1)]
-        private static void BuildAndLaunchExecution()
-        {
-            EditorPrefs.SetBool(shouldPerformLaunchKey, true);
-            BuildProject.BuildAll();      
-        }
 
-        [MenuItem("Build/Launch/Launch", false, 2)]
+        [MenuItem(executeBasePath + "Launch Builds")]
         private static void Launch()
         {
             LaunchBuilds();
         }
 
+        [MenuItem(settingsBasePath + "Build And Launch Settings")]
+        public static void EditSettings()
+        {
+            Selection.activeObject = BuildAndLaunchSettings.Instance;
+            EditorApplication.ExecuteMenuItem("Window/Inspector");
+        }
+
+        [MenuItem(customizeBuildBasePath + "Launch After Build")]
+        private static void ToggleAutoUpload()
+        {
+            EditorPrefs.SetBool(shouldPerformLaunchKey, !EditorPrefs.GetBool(shouldPerformLaunchKey, false));
+        }
+
+        [MenuItem(customizeBuildBasePath + "Launch After Build", true)]
+        private static bool ToggleAutoUploadValidate()
+        {
+            Menu.SetChecked(customizeBuildBasePath + "Launch After Build", EditorPrefs.GetBool(shouldPerformLaunchKey, false));
+            return true;
+        }
         #endregion
 
         #region Public Methods
@@ -33,10 +43,12 @@ namespace UnityBuild
         {
             if(EditorPrefs.GetBool(shouldPerformLaunchKey, false))
             {
-                EditorPrefs.SetBool(shouldPerformLaunchKey, false);
-
                 LaunchBuilds();
             }         
+        }
+
+        public override void Execute(BuildPlatform platform)
+        {
         }
 
         #endregion
@@ -44,12 +56,12 @@ namespace UnityBuild
         #region Private Methods
         private static void LaunchBuilds()
         {
-            string pathToExecutable = Path.Combine(BuildSettings.buildPath, BuildAndLaunchSettings.buildPlatformPath);
+            string pathToExecutable = Path.Combine(BuildSettings.buildPath, BuildAndLaunchSettings.pathToExecutable);
             string arguments = string.Format("-Screen-fullscreen 0 -Screen-height {0} -screen-width {1}", BuildAndLaunchSettings.heightOfInstance, BuildAndLaunchSettings.widthOfInstance);
 
             for (int i = 0; i < BuildAndLaunchSettings.amountOfInstances; i++)
             {
-                Process process = Process.Start(pathToExecutable, arguments);
+                Process.Start(pathToExecutable, arguments);
             }
         }
 

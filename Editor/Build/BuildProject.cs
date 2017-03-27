@@ -20,16 +20,20 @@ namespace UnityBuild
         #region MenuItems
 
         /// <summary>
-        /// Build all enabled platforms.
+        /// Build all enabled platforms with customization.
         /// </summary>
-        [MenuItem("Build/Run Build", false, 1)]
+        [MenuItem("Build/Run Custom Build", priority = 0)]
         public static void BuildAll()
         {
             if (preBuildActions != null)
+            {
                 preBuildActions.Sort();
+            }
 
             if (postBuildActions != null)
+            {
                 postBuildActions.Sort();
+            }
 
             PerformPreBuild();
 
@@ -48,9 +52,31 @@ namespace UnityBuild
         }
 
         /// <summary>
+        /// Just build all enabled platforms.
+        /// </summary>
+        [MenuItem("Build/Run Quick Build", priority = 1)]
+        public static void BuildAllQuick()
+        {
+            if (preBuildActions != null)
+                preBuildActions.Sort();
+
+            if (postBuildActions != null)
+                postBuildActions.Sort();
+
+            for (int i = 0; i < platforms.Count; i++)
+            {
+                BuildPlatform platform = platforms[i];
+                if (platform.buildEnabled)
+                {
+                    platform.Build();
+                }
+            }
+        }
+
+        /// <summary>
         /// Enable building of all platforms.
         /// </summary>
-        [MenuItem("Build/Platforms/Enable All", false, 50)]
+        [MenuItem("Build/Platforms/Enable All")]
         private static void EnableAllPlatforms()
         {
             SetAllBuildPlatforms(true);
@@ -59,12 +85,18 @@ namespace UnityBuild
         /// <summary>
         /// Disable building of all platforms.
         /// </summary>
-        [MenuItem("Build/Platforms/Disable All", false, 50)]
+        [MenuItem("Build/Platforms/Disable All")]
         private static void DisableAllPlatforms()
         {
             SetAllBuildPlatforms(false);
         }
 
+        [MenuItem("Build/Edit Settings/Build Settings")]
+        public static void EditSettings()
+        {
+            Selection.activeObject = BuildSettings.Instance;
+            EditorApplication.ExecuteMenuItem("Window/Inspector");
+        }
         #endregion
 
         #region Register Methods

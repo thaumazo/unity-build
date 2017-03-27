@@ -24,17 +24,6 @@ namespace UnityBuild
         
         #endregion
 
-        #region MenuItems
-
-        [MenuItem("Build/Upload/itch.io/Edit Settings", priority = 0)]
-        public static void EditSettings()
-        {
-            Selection.activeObject = Instance;
-            EditorApplication.ExecuteMenuItem("Window/Inspector");
-        }
-
-        #endregion
-
         #region Variables
 
         [Header("Itch.io Upload Settings (Field Info in Tooltips)")]

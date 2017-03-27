@@ -25,17 +25,6 @@ namespace UnityBuild
 
         #endregion Singleton
 
-        #region MenuItems
-
-        [MenuItem("Build/AssetBundles/Edit Settings", priority = 0)]
-        public static void EditSettings()
-        {
-            Selection.activeObject = Instance;
-            EditorApplication.ExecuteMenuItem("Window/Inspector");
-        }
-
-        #endregion MenuItems
-
         #region Variables
 
         [Header("AssetBundle Build Settings (Field Info in Tooltips)")]

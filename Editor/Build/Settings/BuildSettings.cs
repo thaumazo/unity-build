@@ -28,17 +28,6 @@ namespace UnityBuild
 
         #endregion
 
-        #region MenuItems
-
-        [MenuItem("Build/Edit Settings", priority = 0)]
-        public static void EditSettings()
-        {
-            Selection.activeObject = Instance;
-            EditorApplication.ExecuteMenuItem("Window/Inspector");
-        }
-
-        #endregion
-
         #region Variables
 
         [Header("Build Settings (Field Info in Tooltips)")]
