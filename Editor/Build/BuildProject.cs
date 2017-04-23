@@ -164,10 +164,10 @@ namespace UnityBuild
             }
             BuildPlayerOptions options = new BuildPlayerOptions();
 
-            string[] scenesInBuild = BuildSettings.scenesInBuild;
+            string[] scenesInBuild = BuildSettings.scenesInBuild.Clone() as string[];
             for (int i = 0; i < scenesInBuild.Length; i++)
             {
-                scenesInBuild[i] = "/Assets/" + scenesInBuild[i];
+                scenesInBuild[i] = "Assets/" + scenesInBuild[i];
                 if (!scenesInBuild[i].Contains(".unity"))
                 {
                     scenesInBuild[i] = scenesInBuild[i] + ".unity";
