@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 
 namespace UnityBuild
 {
@@ -21,13 +20,12 @@ namespace UnityBuild
                 return instance;
             }
         }
-        
-        #endregion
+
+        #endregion Singleton
 
         #region Variables
 
         [Header("Itch.io Upload Settings (Field Info in Tooltips)")]
-
         [SerializeField]
         [Tooltip("Path to butler executable. If you added butler to your path variable you can get this using the \"butler which\" command.")]
         private string _butlerPath = "";
@@ -44,8 +42,8 @@ namespace UnityBuild
         [Tooltip("Upload version number (optional).")]
         private string _versionNumber = "";
 
-        #endregion
-        
+        #endregion Variables
+
         #region Public Properties
 
         public static string versionNumber
@@ -84,6 +82,6 @@ namespace UnityBuild
             }
         }
 
-        #endregion
+        #endregion Public Properties
     }
 }

@@ -5,7 +5,6 @@ using UnityEditor;
 
 namespace UnityBuild
 {
-
     [InitializeOnLoad]
     public abstract class BuildPlatform
     {
@@ -31,7 +30,7 @@ namespace UnityBuild
         /// </summary>
         public abstract string dataDirNameFormat { get; }
 
-        #endregion
+        #endregion Abstract
 
         #region Contructor
 
@@ -55,7 +54,7 @@ namespace UnityBuild
             }
         }
 
-        #endregion
+        #endregion Contructor
 
         #region Public Methods
 
@@ -67,9 +66,9 @@ namespace UnityBuild
             BuildProject.PerformBuild(this);
         }
 
-        #endregion
+        #endregion Public Methods
 
-        #region Protected Methods
+        #region private Methods
 
         /// <summary>
         /// Toggle if a target platform should be built.
@@ -91,7 +90,7 @@ namespace UnityBuild
             return true;
         }
 
-        #endregion
+        #endregion private Methods
 
         #region Public Properties
 
@@ -127,7 +126,6 @@ namespace UnityBuild
             }
         }
 
-        #endregion
+        #endregion Public Properties
     }
-
 }

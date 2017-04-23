@@ -1,6 +1,6 @@
-﻿using UnityEditor;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Diagnostics;
+using UnityEditor;
 
 namespace UnityBuild
 {
@@ -35,25 +35,27 @@ namespace UnityBuild
             Menu.SetChecked(customizeBuildBasePath + "Launch After Build", EditorPrefs.GetBool(shouldPerformLaunchKey, false));
             return true;
         }
-        #endregion
+
+        #endregion MenuItems
 
         #region Public Methods
 
         public override void Execute()
         {
-            if(EditorPrefs.GetBool(shouldPerformLaunchKey, false))
+            if (EditorPrefs.GetBool(shouldPerformLaunchKey, false))
             {
                 LaunchBuilds();
-            }         
+            }
         }
 
         public override void Execute(BuildPlatform platform)
         {
         }
 
-        #endregion
+        #endregion Public Methods
 
-        #region Private Methods
+        #region private Methods
+
         private static void LaunchBuilds()
         {
             string pathToExecutable = Path.Combine(BuildSettings.buildPath, BuildAndLaunchSettings.pathToExecutable);
@@ -65,7 +67,7 @@ namespace UnityBuild
             }
         }
 
-        #endregion
+        #endregion private Methods
 
         #region Public Properties
 
@@ -77,6 +79,6 @@ namespace UnityBuild
             }
         }
 
-        #endregion
+        #endregion Public Properties
     }
 }

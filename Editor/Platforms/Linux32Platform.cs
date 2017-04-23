@@ -2,7 +2,6 @@ using UnityEditor;
 
 namespace UnityBuild
 {
-
     public class Linux32Platform : BuildPlatform
     {
         #region Constants
@@ -12,7 +11,7 @@ namespace UnityBuild
         private const string _binaryNameFormat = "{0}.x86";
         private const string _dataDirNameFormat = "{0}_Data";
 
-        #endregion
+        #endregion Constants
 
         #region Methods & Properties (DO NOT EDIT)
 
@@ -41,13 +40,13 @@ namespace UnityBuild
         {
             Toggle(_name);
         }
+
         [MenuItem("Build/Platforms/" + _name, true)]
         private static bool ToggleValidate()
         {
             return ToggleValidate(_name);
         }
 
-        #endregion
+        #endregion Methods & Properties (DO NOT EDIT)
     }
-
 }

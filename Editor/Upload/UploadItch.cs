@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System.IO;
 using UnityEditor;
-using System.IO;
+using UnityEngine;
 
 namespace UnityBuild
 {
@@ -44,8 +44,7 @@ namespace UnityBuild
             EditorApplication.ExecuteMenuItem("Window/Inspector");
         }
 
-
-        #endregion
+        #endregion MenuItems
 
         #region Public Methods
 
@@ -57,9 +56,9 @@ namespace UnityBuild
             }
         }
 
-        #endregion
+        #endregion Public Methods
 
-        #region Private Methods
+        #region private Methods
 
         private static void PerformUpload(BuildPlatform platform)
         {
@@ -67,7 +66,7 @@ namespace UnityBuild
             {
                 return;
             }
-            
+
             string absolutePath = Path.GetFullPath(platform.buildPath).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
 
             if (File.Exists(absolutePath))
@@ -94,7 +93,7 @@ namespace UnityBuild
 
             System.Diagnostics.Process uploadProc = new System.Diagnostics.Process();
             uploadProc.StartInfo.FileName = UploadItchSettings.butlerPath;
-            
+
             uploadProc.StartInfo.Arguments = arguments;
             uploadProc.StartInfo.CreateNoWindow = false;
             uploadProc.StartInfo.UseShellExecute = false;
@@ -108,22 +107,27 @@ namespace UnityBuild
                 // Windows
                 case BuildTarget.StandaloneWindows:
                     return WINDOWS + "-x86";
+
                 case BuildTarget.StandaloneWindows64:
                     return WINDOWS + "-x64";
 
                 // Linux
                 case BuildTarget.StandaloneLinux:
                     return LINUX + "-x86";
+
                 case BuildTarget.StandaloneLinux64:
                     return LINUX + "-x64";
+
                 case BuildTarget.StandaloneLinuxUniversal:
                     return LINUX + "-universal";
 
                 // OSX
                 case BuildTarget.StandaloneOSXIntel:
                     return OSX + "-intel";
+
                 case BuildTarget.StandaloneOSXIntel64:
                     return OSX + "-intel64";
+
                 case BuildTarget.StandaloneOSXUniversal:
                     return OSX + "-universal";
 
@@ -132,7 +136,7 @@ namespace UnityBuild
             }
         }
 
-        #endregion
+        #endregion private Methods
 
         #region Public Properties
 
@@ -144,6 +148,6 @@ namespace UnityBuild
             }
         }
 
-        #endregion
+        #endregion Public Properties
     }
 }

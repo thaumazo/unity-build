@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 
 namespace UnityBuild
 {
@@ -21,13 +20,12 @@ namespace UnityBuild
                 return instance;
             }
         }
-        
-        #endregion
+
+        #endregion Singleton
 
         #region Variables
 
         [Header("Launch After Build Settings (Field Info in Tooltips)")]
-
         [SerializeField]
         [Tooltip("The relative path from the build folder to the executable.")]
         private string _pathToExecutable = "";
@@ -44,7 +42,8 @@ namespace UnityBuild
         [SerializeField]
         [Tooltip("The y part of the resolution of the instance.")]
         private int _heightOfInstance = 600;
-        #endregion
+
+        #endregion Variables
 
         #region Public Properties
 
@@ -95,6 +94,7 @@ namespace UnityBuild
                 Instance._heightOfInstance = value;
             }
         }
-        #endregion
+
+        #endregion Public Properties
     }
 }

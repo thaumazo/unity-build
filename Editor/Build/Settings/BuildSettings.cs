@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
+﻿using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -26,7 +24,7 @@ namespace UnityBuild
             }
         }
 
-        #endregion
+        #endregion Singleton
 
         #region Variables
 
@@ -47,22 +45,20 @@ namespace UnityBuild
         [SerializeField]
         [Tooltip("A list of scenes to include in the build. First listed scene will be loaded first. ")]
         private string[] _scenesInBuild = new string[] {
-        // @"Assets/Scenes/scene1.unity",
-        // @"Assets/Scenes/scene2.unity",
-        // ...
+        @"Scenes/Example"
     };
 
-        // A list of files/directories to include with the build. 
+        // A list of files/directories to include with the build.
         // Paths are relative to Unity project's base folder unless an absolute path is given.
         [SerializeField]
         [Tooltip("A list of files/directories to include with the build.")]
         private string[] _copyToBuild = new string[] {
-        // @"DirectoryToInclude/",
+        @"ExampleDirectoryToInclude/"
         // @"FileToInclude.txt",
         // ...
     };
 
-        #endregion
+        #endregion Variables
 
         #region Methods & Properties
 
@@ -86,6 +82,6 @@ namespace UnityBuild
             get { return Instance._copyToBuild; }
         }
 
-        #endregion
+        #endregion Methods & Properties
     }
 }

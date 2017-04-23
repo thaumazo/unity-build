@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEditor;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Collections.Generic;
-using System.Text;
+using UnityEditor;
+using UnityEngine;
 
 namespace UnityBuild
 {
@@ -15,7 +13,7 @@ namespace UnityBuild
         public static List<BuildAction> preBuildActions { get; private set; }
         public static List<BuildAction> postBuildActions { get; private set; }
 
-        #endregion
+        #endregion Public Variables & Auto-Properties
 
         #region MenuItems
 
@@ -97,7 +95,8 @@ namespace UnityBuild
             Selection.activeObject = BuildSettings.Instance;
             EditorApplication.ExecuteMenuItem("Window/Inspector");
         }
-        #endregion
+
+        #endregion MenuItems
 
         #region Register Methods
 
@@ -143,7 +142,7 @@ namespace UnityBuild
             postBuildActions.Add(action);
         }
 
-        #endregion
+        #endregion Register Methods
 
         #region Public Methods
 
@@ -165,7 +164,17 @@ namespace UnityBuild
             }
             BuildPlayerOptions options = new BuildPlayerOptions();
 
-            options.scenes = BuildSettings.scenesInBuild;
+            string[] scenesInBuild = BuildSettings.scenesInBuild;
+            for (int i = 0; i < scenesInBuild.Length; i++)
+            {
+                scenesInBuild[i] = "/Assets/" + scenesInBuild[i];
+                if (!scenesInBuild[i].Contains(".unity"))
+                {
+                    scenesInBuild[i] = scenesInBuild[i] + ".unity";
+                }
+            }
+
+            options.scenes = scenesInBuild;
             options.locationPathName = platform.buildPath + platform.exeName;
             options.target = platform.target;
 
@@ -197,9 +206,9 @@ namespace UnityBuild
             }
         }
 
-        #endregion
+        #endregion Public Methods
 
-        #region Private Methods
+        #region private Methods
 
         private static void SetAllBuildPlatforms(bool enabled)
         {
@@ -257,6 +266,6 @@ namespace UnityBuild
             }
         }
 
-        #endregion
+        #endregion private Methods
     }
 }

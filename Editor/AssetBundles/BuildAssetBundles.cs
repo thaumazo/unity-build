@@ -35,7 +35,8 @@ namespace UnityBuild
             Selection.activeObject = BuildAssetBundlesSettings.Instance;
             EditorApplication.ExecuteMenuItem("Window/Inspector");
         }
-        #endregion
+
+        #endregion MenuItems
 
         #region Public Methods
 
@@ -44,9 +45,9 @@ namespace UnityBuild
             Build(platform);
         }
 
-        #endregion
+        #endregion Public Methods
 
-        #region Private Methods
+        #region private Methods
 
         private static void BuildAll()
         {
@@ -63,7 +64,7 @@ namespace UnityBuild
             {
                 return;
             }
-            
+
             // Path where this platform's AssetBundles will be built.
             string platformBundlePath = BuildAssetBundlesSettings.buildPath + Path.DirectorySeparatorChar + platform.name;
 
@@ -88,6 +89,6 @@ namespace UnityBuild
             }
         }
 
-        #endregion
+        #endregion private Methods
     }
 }
