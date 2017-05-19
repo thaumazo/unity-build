@@ -69,7 +69,7 @@ namespace UnityBuild
 
         public static string buildPath
         {
-            get { return Instance._buildPath.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar); }
+            get { return Path.Combine(Directory.GetCurrentDirectory(), Instance._buildPath.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)); }
         }
 
         public static string[] scenesInBuild
